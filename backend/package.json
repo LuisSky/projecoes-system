@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "NODE_ENV=teste node src/app.js",
+    "dev": "NODE_ENV=teste node src/server.js",
     "test": "jest",
     "secure-mode": "jest --watch --verbose=true",
     "lint": "eslint src/** __tests__/** --fix"
