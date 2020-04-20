@@ -1,14 +1,16 @@
 const express = require('express');
 const router = express.Router();
 
-const arrayUsers = [
-  { name: 'Brad', mail: 'brad@mail.com' },
-  { name: 'Mia', mail: 'Mia@mail.com' },
-  { name: 'John', mail: 'john@mail.com' }
-];
+const userModel = require('../models/users.js');
 
-router.get('/', (req, res) => {
-  return res.status(200).json(arrayUsers);
+router.get('/', async (req, res) => {
+  const users = await userModel.getUsers();
+  return res.status(200).json(users);
+});
+
+router.post('/', async (req, res) => {
+  const user = await userModel.addUser(req.body);
+  return res.status(201).json(user);
 });
 
 module.exports = router;
