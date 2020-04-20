@@ -27,11 +27,17 @@ body {
 
 @media screen and (max-width: 450px) {
   .login-form{
-      margin-top: 10%;
+      margin-top: 15%;
   }
 
   .register-form{
       margin-top: 10%;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .login-form{
+    margin-top: 15%;
   }
 }
 
