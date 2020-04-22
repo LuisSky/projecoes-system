@@ -3,7 +3,7 @@ const app = require('../../src/app');
 
 const MAIN_ROUTE = '/users';
 
-test('Should response statuscode 200 in users route', () => {
+test('Should response statuscode 200 in users route', async () => {
   return supertest(app).get(MAIN_ROUTE)
     .then((res) => {
       expect(res.status).toBe(200);
@@ -12,7 +12,7 @@ test('Should response statuscode 200 in users route', () => {
     });
 });
 
-test('Should response users json list', () => {
+test('Should response users json list', async () => {
   return supertest(app).post(MAIN_ROUTE)
     .send({ name: 'any Name', password: 'anypassword', email: `${Date.now()}@mail.com` })
     .then((res) => {
