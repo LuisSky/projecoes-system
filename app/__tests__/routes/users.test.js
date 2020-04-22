@@ -12,11 +12,31 @@ test('Should response statuscode 200 in users route', async () => {
     });
 });
 
-test('Should response users json list', async () => {
-  return supertest(app).post(MAIN_ROUTE)
-    .send({ name: 'any Name', password: 'anypassword', email: `${Date.now()}@mail.com` })
-    .then((res) => {
+describe('Insert user tests', () => {
+  const inserUserTemplate = async (overWriteData, callBack) => {
+    const validData = { name: 'any Name', password: 'anypassword', email: `${Date.now()}@mail.com` };
+    return supertest(app).post(MAIN_ROUTE)
+      .send({ ...validData, ...overWriteData })
+      .then((res) => callBack(res));
+  };
+
+  test('Should insert user with sucess', () => {
+    return inserUserTemplate({}, (res) => {
+      console.log(res.body);
       expect(res.status).toBe(201);
       expect(res.body.name).toBe('any Name');
     });
+  });
+
+  test('Should store the encrypted password', () => {
+
+    const pass = 'testpassword';
+
+    return inserUserTemplate({ password: pass }, (res) => {
+      console.log(res.body);
+      expect(res.status).toBe(201);
+      expect(res.body.password).not.toBe(pass);
+    });
+  });
+
 });
