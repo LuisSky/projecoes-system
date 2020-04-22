@@ -22,7 +22,6 @@ describe('Insert user tests', () => {
 
   test('Should insert user with sucess', () => {
     return inserUserTemplate({}, (res) => {
-      console.log(res.body);
       expect(res.status).toBe(201);
       expect(res.body.name).toBe('any Name');
     });
@@ -33,7 +32,6 @@ describe('Insert user tests', () => {
     const pass = 'testpassword';
 
     return inserUserTemplate({ password: pass }, (res) => {
-      console.log(res.body);
       expect(res.status).toBe(201);
       expect(res.body.password).not.toBe(pass);
     });
