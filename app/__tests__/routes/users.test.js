@@ -13,6 +13,7 @@ test('Should response statuscode 200 in users route', async () => {
 });
 
 describe('Insert user tests', () => {
+
   const inserUserTemplate = async (overWriteData, callBack) => {
     const validData = { name: 'any Name', password: 'anypassword', email: `${Date.now()}@mail.com` };
     return supertest(app).post(MAIN_ROUTE)
